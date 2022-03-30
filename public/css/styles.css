@@ -1,0 +1,70 @@
+/* LAYOUT */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.footer{
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #909090;
+    padding: 0.5rem;
+}
+
+
+/* NAVBAR */
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0.75rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 3px 1px #ccc;
+}
+.logo,.menu li a{
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.logo{
+    color: black;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.menu{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+}
+.menu-link {
+    color: #292929;
+}
+
+/* INDEX */
+
+.heading {
+    text-align: center;
+}
+.list{
+    list-style: none;
+    width: 70%;
+    margin: 1rem auto;
+    padding: 0.75rem;
+    border: 0.5px solid #ccc;
+}
+.list-item{
+    padding: 0.5rem 0;
+}
+.list-link{
+    font-size: 1.4rem;
+    text-decoration: none;
+}
