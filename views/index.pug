@@ -2,10 +2,13 @@ extends layout.pug
 
 block content  
     h1.heading All Workers 
-    ul.list 
-        li.list-item
-            a.list-link(href="/")  First Element 
-        li.list-item
-            a.list-link(href="/")  Second Element 
-        li.list-item
-            a.list-link(href="/")  Third Element 
+    if (workers.length)
+        ul.workers 
+            each worker in workers
+                li.worker 
+                    a(href="/" + worker.id)= worker.fullName 
+                    .options 
+                        a.edit(href="/edit/" + worker.id) edit
+                        a.delete(href="/delete/" + worker.id) delete 
+    else 
+        p.message-box No data available
