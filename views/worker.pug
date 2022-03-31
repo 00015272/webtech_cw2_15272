@@ -1,0 +1,9 @@
+extends layout.pug 
+
+block content 
+    h3.page-title Worker details: #{ worker != undefined ? worker.fullName : 'No data available...' }
+
+    if worker 
+        h1= worker.fullName 
+        h2= worker.department  
+        p= worker.bio

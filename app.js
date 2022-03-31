@@ -9,6 +9,7 @@ let Worker = require('./models')
 
 db.sync({force: true }).then(() => 'DB is ready...')
 
+
 // SET UP
 app.use('/static', express.static('public'))
 app.use(express.urlencoded({ extended: false }))
@@ -82,6 +83,18 @@ app.get('/delete/:id', async (req, res) => {
     })
 
     res.redirect(`/?deleted=true`)
+})
+
+// SINGLE WORKER
+app.get('/:id', async function(req,res){
+    let id = req.params.id
+
+    let worker = await Worker.findByPk(id)
+
+    res.render('worker', {
+        worker: worker
+    })
+
 })
 
 
