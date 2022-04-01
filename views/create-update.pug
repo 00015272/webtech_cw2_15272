@@ -1,21 +1,22 @@
 extends layout.pug 
 
 block content 
-    h3.page-title 
 
     if worker 
-        form(action=`/update/${ worker.id }` method="POST")
+        h3.page-title Update a Record
+        form.form(action=`/update/${ worker.id }` method="POST")
             input.input(type="text" name="fullName" value= worker.fullName)
             input.input(type="text" name="department" value= worker.department)
             textarea.input(name="bio", cols="30", rows="10")= worker.bio
-            button.input.btn Update
+            button.update.btn Update
         
 
     else 
-        form(action="/create-new-record" method="POST")
+        h3.page-title Create a Record
+        form.form(action="/create-new-record" method="POST")
             input.input(type="text" name="fullName" placeholder="Fullname")
             input.input(type="text" name="department" placeholder="Department")
             textarea.input(name="bio" cols="30" rows="10" placeholder="Bio")
-            button.input.btn Create
+            button.update.btn Create
 
     
