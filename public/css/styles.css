@@ -54,17 +54,49 @@
 .heading {
     text-align: center;
 }
+.message-box,
 .list{
     list-style: none;
     width: 70%;
+    height: 30rem;
+    overflow-x: hidden;
     margin: 1rem auto;
     padding: 0.75rem;
     border: 0.5px solid #ccc;
 }
-.list-item{
-    padding: 0.5rem 0;
+.message-box{
+    text-align: center;
+    font-size: 1.2rem;
 }
-.list-link{
-    font-size: 1.4rem;
+.list::-webkit-scrollbar{
+    width: 10px;
+}
+.list::-webkit-scrollbar-track{
+    background-color: #fff;
+    border-radius: 5px;
+}
+.list::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background-color: #ccc;
+    border-radius: 5px;
+
+}
+.list-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.2rem 0.5rem;
+}
+.list-item > a{
     text-decoration: none;
+    font-size: 1.25rem;
+}
+.options{
+    width: 12%;
+    display: flex;
+    justify-content: space-between;
+}
+.options a{
+    text-decoration: none;
+    color: #909090;
 }

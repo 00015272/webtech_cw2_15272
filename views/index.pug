@@ -3,9 +3,9 @@ extends layout.pug
 block content  
     h1.heading All Workers 
     if (workers.length)
-        ul.workers 
+        ul.list  
             each worker in workers
-                li.worker 
+                li.list-item 
                     a(href="/" + worker.id)= worker.fullName 
                     .options 
                         a.edit(href="/edit/" + worker.id) edit
