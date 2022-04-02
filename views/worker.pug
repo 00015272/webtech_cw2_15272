@@ -1,9 +1,18 @@
 extends layout.pug 
 
 block content 
-    h3.page-title Worker details: #{ worker != undefined ? worker.fullName : 'No data available...' }
-
-    if worker 
-        h1= worker.fullName 
-        h2= worker.department  
-        p= worker.bio
+    p.singleTitle Worker details for 
+        span #{ worker != undefined ? worker.fullName : 'No data available...' }
+    
+    .worker 
+        if worker 
+            h3.workerHeading Worker Info
+            div.workerInfo.workerName 
+                span Name: 
+                span #{ worker.fullName } 
+            p.workerInfo.workerDepartment 
+                span Department: 
+                span #{ worker.department }  
+            p.workerInfo.workerBio 
+                span Bio: 
+                span #{ worker.bio }

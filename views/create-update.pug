@@ -18,7 +18,7 @@ block content
                         p.errorMsg #{ departmentError }
                 .input-group
                     label(for="bio") Bio 
-                    textarea.input(name="bio" id="bio" cols="20" rows="10" value= worker.bio)
+                    textarea.input(name="bio" id="bio" cols="20" rows="10")= worker.bio 
                     if bioError 
                         p.errorMsg #{ bioError }                
                 button.update.btn#btnSms Update

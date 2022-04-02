@@ -21,6 +21,7 @@ app.set('view engine', 'pug')
 // ROOT-URL
 app.get('/', async function(req,res) {
     let workers = null;
+    // ERROR HANDLING
     try {
         workers = await Worker.findAll()
 
@@ -108,7 +109,6 @@ async (req, res) => {
     if(!err.isEmpty()) {
         const errors = err.array()
         for (error of errors){
-            console.log(error);
             if (error.param == "fullName") {
                 nameError = error.msg
             }
@@ -137,7 +137,7 @@ async (req, res) => {
                 id: id
             }
         })
-
+        
         res.redirect('/?updated=true')    
     }
     
