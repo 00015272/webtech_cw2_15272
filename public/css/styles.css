@@ -28,7 +28,8 @@
     align-items: center;
     padding: 1rem 0.75rem;
     margin-bottom: 1rem;
-    box-shadow: 0 3px 1px #ccc;
+    /* background-color: rgba(0, 0, 0, 0.02); */
+    box-shadow: 0 1px 1px #ccc;
 }
 .logo,.menu li a{
     text-decoration: none;
@@ -51,23 +52,44 @@
 
 /* INDEX */
 
+.message-box{
+    margin: 1rem auto;
+    padding: 1rem 0.75rem;
+    font-size: 1.2rem;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.display-none{
+    display: none !important;
+}
+.created{
+    background-color: orange;
+    color: #fff;
+}
+.deleted{
+    background-color: red;
+    color: #fff;
+}
+.updated{
+    background-color: green;
+    color: #fff;
+}
 .heading {
     text-align: center;
 }
-.message-box,
+
 .list{
     list-style: none;
     width: 70%;
-    height: 30rem;
+    height: 28rem;
     overflow-x: hidden;
     margin: 1rem auto;
     padding: 0.75rem;
     border: 0.5px solid #ccc;
 }
-.message-box{
-    text-align: center;
-    font-size: 1.2rem;
-}
+
 .list::-webkit-scrollbar{
     width: 10px;
 }
@@ -85,41 +107,73 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 0.2rem 0.5rem;
+    padding: 0.5rem 0.5rem;
+    border-bottom: 0.5px dotted #ccc;
+}
+.list-item:last-child{
+    border: none;
 }
 .list-item > a{
     text-decoration: none;
     font-size: 1.25rem;
 }
 .options{
-    width: 12%;
     display: flex;
     justify-content: space-between;
 }
 .options a{
     text-decoration: none;
     color: #909090;
+    margin: 0 0.5rem;
 }
 
 /* CREATE-UPDATE RECORD */
-.page-title{
-    text-align: center;
-    margin: 1rem auto;
+.form-wrapper {
+    width: 40%;
+    margin: 2rem auto;
+    outline: none;
+    box-shadow: 0 3px 2px #ccc;
+}
+.form-wrapper > .page-title {
     font-size: 1.4rem;
+    padding: 1rem 2rem;
+    background-color: #eee;
+    font-family: sans-serif;
 
 }
 .form{
-    width: 50%;
-    margin: 0 auto;
+    width: 100%;
     display: block;
+    padding: 1rem 2rem;
+
 }
-.form .input {
+.input-group{
+    margin-bottom: 1rem;
+}
+.input {
     width: 100%;
     padding: 0.5rem 0.25rem;
-    margin: 0.5rem 0;
+    outline: none;
+    border: 0.5px solid #ccc;
 }
-.form .btn{
+
+.errorMsg{
+    color: red;
+}
+
+.btn{
+    width: 100%;
     font-size: 1.2rem;
     padding: 0.75rem 1.25rem;
     margin-bottom: 1rem;
+    border: none;
+    cursor: pointer;
+}
+.create{
+    background-color: orange;
+    color: #fff
+}
+.update{
+    background-color: green;
+    color: #fff
 }

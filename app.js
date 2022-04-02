@@ -1,13 +1,16 @@
 //THIRD-PARTY APIs
 const express = require('express')
 const app = express()
+const { body, validationResult } = require('express-validator');
+
+// PORT
 const PORT = 3000
 
 // DATABASE SETUP
 let db = require('./database')
 let Worker = require('./models')
 
-db.sync({force: true }).then(() => 'DB is ready...')
+db.sync({force: false }).then(() => 'DB is ready...')
 
 
 // SET UP
@@ -44,10 +47,44 @@ app.get('/Create', (req, res) => {
 })
 
 // POST : /CREATE-NEW-RECORD
-app.post('/create-new-record', async (req, res) => {
-    let worker = await Worker.create(req.body)
-    res.redirect(`/?id=${ worker.id }`)
+app.post('/create-new-record',
+// FORM VALIDATION
+body("fullName").isLength({ min: 5 }).withMessage("Name must contain at least 4 letters"),
+body("department").isLength({ min: 1 }).withMessage("Department must not be empty"),
+body("bio").isLength({ min: 10 }).withMessage("Bio must contain at least 10 letters"),
+// HANDLING
+async (req, res) => {
+    
+    const err = validationResult(req)
+    let nameError = null
+    let departmentError = null
+    let bioError = null
+    if(!err.isEmpty()) {
+        const errors = err.array()
+        for (error of errors){
+            console.log(error);
+            if (error.param == "fullName") {
+                nameError = error.msg
+            }
+            if (error.param == "department") {
+                departmentError = error.msg
+            }
+            if (error.param == "bio") {
+                bioError = error.msg
+            }
+        }
+        
+        res.render('create-update', { 
+            nameError: nameError,
+            departmentError: departmentError,
+            bioError: bioError
+         })
+    } else {
+        let worker = await Worker.create(req.body)
+        res.redirect(`/?id=${ worker.id }`)
+    }
 })
+
 
 // EDIT
 app.get('/edit/:id', async (req, res) => {
@@ -57,19 +94,53 @@ app.get('/edit/:id', async (req, res) => {
 })
 
 // UPDATE
-app.post('/update/:id', async (req, res) => {
-    let id = req.params.id
-    let result = await Worker.update({
-        fullName: req.body.fullName,
-        department: req.body.department,
-        bio: req.body.bio 
-    }, {
-        where: {
-            id: id
+app.post('/update/:id',
+// FORM VALIDATION
+body("fullName").isLength({ min: 5 }).withMessage("Name must contain at least 4 letters"),
+body("department").isLength({ min: 1 }).withMessage("Department must not be empty"),
+body("bio").isLength({ min: 10 }).withMessage("Bio must contain at least 10 letters"),
+async (req, res) => {
+    
+    const err = validationResult(req)
+    let nameError = null
+    let departmentError = null
+    let bioError = null
+    if(!err.isEmpty()) {
+        const errors = err.array()
+        for (error of errors){
+            console.log(error);
+            if (error.param == "fullName") {
+                nameError = error.msg
+            }
+            if (error.param == "department") {
+                departmentError = error.msg
+            }
+            if (error.param == "bio") {
+                bioError = error.msg
+            }
         }
-    })
+        
+        let id = req.params.id
+        let worker = await Worker.findByPk(id)
 
-    res.redirect('/?updated=true')
+        res.render('create-update', { 
+            worker: worker,
+            nameError: nameError,
+            departmentError: departmentError,
+            bioError: bioError
+        })
+    
+    } else {    
+        let id = req.params.id
+        let result = await Worker.update(req.body, {
+            where: {
+                id: id
+            }
+        })
+
+        res.redirect('/?updated=true')    
+    }
+    
 })
 
 // DELETE

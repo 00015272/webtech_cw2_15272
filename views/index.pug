@@ -1,6 +1,16 @@
 extends layout.pug
 
 block content  
+    if id  
+        p.message-box.created#msg Record has been created successfully!
+            i#menu-btn(class="fa-solid fa-xmark")
+    if deleted 
+        p.message-box.deleted#msg Record has been deleted successfully!
+            i#menu-btn(class="fa-solid fa-xmark")
+    if updated  
+        p.message-box.updated#msg Record has been updated successfully!
+            i#menu-btn(class="fa-solid fa-xmark")
+    
     h1.heading All Workers 
     if (workers.length)
         ul.list  
@@ -8,7 +18,9 @@ block content
                 li.list-item 
                     a(href="/" + worker.id)= worker.fullName 
                     .options 
-                        a.edit(href="/edit/" + worker.id) edit
-                        a.delete(href="/delete/" + worker.id) delete 
+                        a.edit(href="/edit/" + worker.id) 
+                            i(class="fas fa-edit")
+                        a.delete(href="/delete/" + worker.id) 
+                            i(class="fa-solid fa-trash") 
     else 
         p.message-box No data available

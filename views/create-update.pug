@@ -1,22 +1,46 @@
 extends layout.pug 
 
 block content 
-
-    if worker 
-        h3.page-title Update a Record
-        form.form(action=`/update/${ worker.id }` method="POST")
-            input.input(type="text" name="fullName" value= worker.fullName)
-            input.input(type="text" name="department" value= worker.department)
-            textarea.input(name="bio", cols="30", rows="10")= worker.bio
-            button.update.btn Update
+    div.form-wrapper 
+        //- UPDATE
+        if worker 
+            p.page-title Update a Record
+            form.form(action=`/update/${ worker.id }` method="POST")
+                .input-group 
+                    label(for="fullName") Name 
+                        input.input(type="text" id="fullName" name="fullName" value= worker.fullName)
+                        if nameError 
+                            p.errorMsg #{ nameError }
+                .input-group 
+                    label(for="department") Department
+                    input.input(type="text" id="department" name="department" value= worker.department)
+                    if departmentError 
+                        p.errorMsg #{ departmentError }
+                .input-group
+                    label(for="bio") Bio 
+                    textarea.input(name="bio" id="bio" cols="20" rows="10" value= worker.bio)
+                    if bioError 
+                        p.errorMsg #{ bioError }                
+                button.update.btn#btnSms Update
+            
+        //- CREATE
+        else 
+            p.page-title Create a Record
+            form.form(action="/create-new-record" method="POST")
+                .input-group 
+                    label(for="fullName") Name 
+                        input.input(type="text" id="fullName" name="fullName" placeholder="Fullname")
+                        if nameError 
+                            p.errorMsg #{ nameError }
+                .input-group 
+                    label(for="department") Department
+                    input.input(type="text" id="department" name="department" placeholder="Department")
+                    if departmentError 
+                        p.errorMsg #{ departmentError }
+                .input-group
+                    label(for="bio") Bio 
+                    textarea.input(name="bio" id="bio" cols="20" rows="10" placeholder="Bio")
+                    if bioError 
+                        p.errorMsg #{ bioError }
+                button.create.btn#btnSms Create
         
-
-    else 
-        h3.page-title Create a Record
-        form.form(action="/create-new-record" method="POST")
-            input.input(type="text" name="fullName" placeholder="Fullname")
-            input.input(type="text" name="department" placeholder="Department")
-            textarea.input(name="bio" cols="30" rows="10" placeholder="Bio")
-            button.update.btn Create
-
-    
