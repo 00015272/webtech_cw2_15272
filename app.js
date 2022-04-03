@@ -4,7 +4,7 @@ const app = express()
 const { body, validationResult } = require('express-validator');
 
 // PORT
-const PORT = process.env.PORT | 3000
+const PORT = 3000
 
 // DATABASE SETUP
 let db = require('./database')
@@ -170,7 +170,7 @@ app.get('/:id', async function(req,res){
 
 
 // APP LISTEN PORT
-app.listen(PORT, (err) => {
+app.listen(process.env.PORT | 3000, (err) => {
     if (err) throw err
-    console.log(`Server is running on port ${PORT}`)
+    console.log(`Server is running`)
 });
