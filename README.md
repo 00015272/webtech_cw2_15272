@@ -25,3 +25,11 @@ node app
 - pug
 - sequelize
 - sqlite3
+
+
+### Link to the Github Repository
+https://github.com/00015272/webtech_cw2_15272.git
+
+
+### Link to the Hosted App
+https://workersapplication.herokuapp.com/
